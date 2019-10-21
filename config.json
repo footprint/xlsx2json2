@@ -1,0 +1,13 @@
+{
+  "xlsx": {
+    "head": 2,
+    "src": "../Wood_Docs/xlsx/**/[^~$]*.xlsx",
+    "dest": "../Resources/xdata"
+  },
+  "ts": false,
+  "esc" : true,
+  "xml" : false,
+  "json": {
+    "uglify": true
+  }
+}
