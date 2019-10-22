@@ -9,5 +9,12 @@
   "xml" : false,
   "json": {
     "uglify": true
+  },
+  "plugins": {
+    "ttf" : {
+      "extra":"ttf-text",
+      "src": "../Wood_Docs/fonts",
+      "dest": "../Resources/fonts"
+    }
   }
 }

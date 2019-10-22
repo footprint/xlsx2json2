@@ -182,7 +182,7 @@ npm install
 * 布尔类型：命名形式 `列名#bool` 。
 * 数组：命名形式  `列名#[]`。
 * 对象：命名形式 `列名#{}`。
-* 主键：命名形式`列名#id` ,表中只能有一列（footprint: 如果列名是key则不重复写入该列）。
+* 主键：命名形式`列名#id` ,表中只能有一列（**footprint**: 如果列名是key则不重复写入该列）。
 * 主键数组：命名形式`列名#id[]`，表中只能有一列，只存在于从表中。
 * 列名字以`!`开头则不导出此列。
 
@@ -192,6 +192,15 @@ npm install
 
 - sheet名字以`！`开头则不导出此表。
 - 从表的名字 `从表名字@主表名字`，主表必须在从表的前面。
+- **footprint**: sheet名字以`&`开头则执行自定义插件模块(比如`&ttf`, 则加载`plugins/ttf.js`，然后执行该模块，且不导出此表。
+```javascript 
+// 模块接口定义
+module.exports = {
+    begin: function(sheet, setting) {},
+    end: function(sheet, setting) {},
+    parseRow: function (row, rowIndex, head) {}
+};
+```
 
 
 
