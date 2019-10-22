@@ -39,15 +39,17 @@ function execCmd(args, completeHandler) {
 }
 
 module.exports = {
-    begin: function(sheet, setting) {
+    // 表格开始解析
+    workbookBegin: function(workbook, settings) {
         if (debug_on) {
-            console.log(plugin, "begin:", sheet.name);
+            console.log(plugin, "workbookBegin:");
         }
         data = {};
     },
-    end: function(sheet, setting) {
+    // 表格解析结束
+    workbookEnd: function(workbook, settings) {
         if (debug_on) {
-            console.log(plugin, "end:", sheet.name);
+            console.log(plugin, "workbookEnd:");
         }
         
         for (let font in data) {
@@ -76,6 +78,19 @@ module.exports = {
             });
         }
     },
+    // 单个sheet解析开始
+    sheetBegin: function(sheet, setting) {
+        if (debug_on) {
+            console.log(plugin, "begin:", sheet.name);
+        }
+    },
+    // 单个sheet解析结束
+    sheetEnd: function(sheet, setting) {
+        if (debug_on) {
+            console.log(plugin, "end:", sheet.name);
+        }
+    },
+    // 单个sheet解析一行
     parseRow: function (row, rowIndex, head) {
         if (debug_on) {
             console.log(plugin, "parseRow:", rowIndex);

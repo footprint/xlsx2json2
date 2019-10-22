@@ -192,12 +192,19 @@ npm install
 
 - sheet名字以`！`开头则不导出此表。
 - 从表的名字 `从表名字@主表名字`，主表必须在从表的前面。
-- **footprint**: sheet名字以`&`开头则执行自定义插件模块(比如`&ttf`, 则加载`plugins/ttf.js`，然后执行该模块，且不导出此表。
+- **footprint**: sheet名字以`&`开头则执行自定义插件模块(比如`&ttf`, 则加载`plugins/ttf.js`，然后执行该模块，且不导出此表。**[注意]** config.json里`plugins`里配置相应的模块才会调用workbook*相关接口
 ```javascript 
 // 模块接口定义
 module.exports = {
-    begin: function(sheet, setting) {},
-    end: function(sheet, setting) {},
+		// 表格开始解析
+    workbookBegin: function(workbook, settings) {},
+   	// 表格解析结束
+    workbookEnd: function(workbook, settings) {},
+    // 单个sheet解析开始
+    sheetBegin: function(sheet, setting) {},
+    // 单个sheet解析结束
+    sheetEnd: function(sheet, setting) {},
+    // 单个sheet解析一行
     parseRow: function (row, rowIndex, head) {}
 };
 ```
