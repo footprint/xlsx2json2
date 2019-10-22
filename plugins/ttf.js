@@ -4,7 +4,10 @@ var cp = require('child_process');
 var spawn = cp.spawn;
 
 var plugin = __filename.slice(__dirname.length + 1, -3);
-var pluginConfig = config["plugins"][plugin];
+var pluginConfig = undefined;
+if (typeof(config["plugins"]) !== 'undefined') {
+    pluginConfig = config["plugins"][plugin];
+}
 
 if (debug_on) {
     console.log("loading plugin:", plugin, "with config:", pluginConfig);
@@ -94,6 +97,10 @@ module.exports = {
     parseRow: function (row, rowIndex, head) {
         if (debug_on) {
             console.log(plugin, "parseRow:", rowIndex);
+        }
+
+        if (typeof (pluginConfig) === 'undefined') {
+            return;
         }
 
         let hPlugin = '&' + plugin;
