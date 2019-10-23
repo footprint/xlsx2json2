@@ -103,7 +103,7 @@ module.exports = {
             return;
         }
 
-        let hPlugin = '&' + plugin;
+        let hPlugin = '!' + plugin;
         let hExtraText = '!' + pluginConfig.extra;
         let font;
         let extraText;
